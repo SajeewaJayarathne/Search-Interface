@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use solr_conf;
 use Illuminate\Http\Request;
 
-class SolrClientController extends Controller
-{
-    public function get(String $key){
+require_once('solr/Apache/Solr/search.php');
+use App\Http\Controllers\solr\Apache\Solr\Solr_Server;
 
-        // $search_key = Request.$argv[1];
-
-        // $results = search($search_key)
-//         return $request->all();
-        return $key;
-        // return view('welcome');
-
-    }
-
-    private function search($key){
-
-
+class SolrClientController extends Controller{
+    
+    public function get(Request $request){
+        $solr = new Solr_Server;
+        $results = $solr->search($request['q']);
+        dd($results);
+        return $results;
+        // return view('welcome', compact($results));
     }
 
 }
