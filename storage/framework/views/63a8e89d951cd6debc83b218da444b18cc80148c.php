@@ -4,25 +4,18 @@
 
 <?php $__env->startSection('content'); ?>
     <div id="search-bar" class="row" style="height: 20%; padding-top: 5%; padding-bottom: 5%">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter Keyword(s)">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">
-                            <i class="fa fa-search"></i>Search
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-2"></div>
+        <?php echo $__env->make('includes/search-bar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> 
     </div> 
     
     <div class="results-container">
-        <div class="row">
-            <h2>Search</h2>
+        <h3>Search</h3>
+
+        
+        <?php echo $__env->make('includes/search-menu-bar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> 
+
+        
+        <div class="results" style="padding: 1.5%">
+            <?php echo $__env->make('includes/empty', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
