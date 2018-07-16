@@ -1,0 +1,16 @@
+.padded-multiline { 
+    line-height: 1.4; 
+    width: 500px;
+}
+.padded-multiline span { 
+    color: gray; 
+    display: block;
+    overflow: hidden;
+    font-size: 0.95em;
+    /* white-space: nowrap;
+    text-overflow: ellipsis; */
+
+    /* Needs prefixing */
+    /* box-decoration-break: clone;
+    -webkit-box-decoration-break: clone; */
+}

@@ -17,8 +17,8 @@
 
         {{-- include the results pages --}}
         <div class="results" style="padding: 1.5%">
-           @if ($results)
-                @include('includes/results');   
+            @if (isset($results))
+                @include('includes/results');
             @else
                 @include('includes/empty');
            @endif
