@@ -62,17 +62,14 @@ class Solr_Server{
 
                     if ($response)
                     {
-                        // dd($response);
                      
                         // you can obtain more result parameters by parsing the reponse 
                    
                         $matches = json_decode($response->getRawResponse())->grouped->category->matches;
                         $docs = json_decode($response->getRawResponse())->grouped->category->groups;
-                        // dd($docs[0]->doclist->docs[0]->name[0]);
                         
                     }
                     // For this instance only result documents are wanted
-    
                     return ['docs' => $docs, 'matches' => $matches];
                     
                 }

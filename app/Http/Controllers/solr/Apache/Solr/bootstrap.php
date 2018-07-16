@@ -5,8 +5,8 @@ namespace App\Http\Controllers\solr;
 
 /* Domain name of the Solr server */
 // define('SOLR_SERVER_HOSTNAME', '10.20.6.69');
-// define('SOLR_SERVER_HOSTNAME', 'localhost');
-define('SOLR_SERVER_HOSTNAME', '192.168.8.101');
+define('SOLR_SERVER_HOSTNAME', 'localhost');
+// define('SOLR_SERVER_HOSTNAME', '192.168.8.101');
 
 /* Whether or not to run in secure mode */
 // define('SOLR_SECURE', true);
