@@ -1,16 +1,24 @@
 .padded-multiline { 
     line-height: 1.4; 
-    width: 500px;
+    width: auto;
 }
+
 .padded-multiline span { 
     color: gray; 
-    display: block;
-    overflow: hidden;
     font-size: 0.95em;
-    /* white-space: nowrap;
-    text-overflow: ellipsis; */
+    text-align: justify;
 
-    /* Needs prefixing */
-    /* box-decoration-break: clone;
-    -webkit-box-decoration-break: clone; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-height: 1.15;        /* fallback */
+    max-height: 3;       /* fallback */
+}
+
+.result-header {
+    color: darkslategrey;
+    font-size: 1.5em;
+    margin-bottom: 5px;
 }

@@ -10,7 +10,7 @@
     </div> 
     
     <div class="results-container">
-        <h3>Search</h3>
+        <h3>Search Results</h3>
 
         {{-- include the search menu bar from layouts --}}
         @include('includes/search-menu-bar') 
@@ -18,10 +18,10 @@
         {{-- include the results pages --}}
         <div class="results" style="padding: 1.5%">
             @if (isset($results))
-                @include('includes/results');
+                @include('includes/results')
             @else
-                @include('includes/empty');
-           @endif
+                @include('includes/empty')
+            @endif
         </div>
     </div>
 @endsection

@@ -1,11 +1,11 @@
 <div class="results">
-    <hgroup class="mb20">
-        <span style="color: gray">
-            <b>Search Results</b>
-            <br>
-            {{ sizeof($results) }} results were found
-        </span>
-    </hgroup>    
+    <div class="result-header">
+        @if (count($results)>0)
+            <span>{{ sizeof($results) }} results were found</span>
+        @else
+            <span>No results found</span>
+        @endif
+    </div>
     <section>
         <ul class="list-group">
             @foreach ($results as $result)
