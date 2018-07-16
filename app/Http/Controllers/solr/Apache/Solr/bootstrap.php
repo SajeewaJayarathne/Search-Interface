@@ -1,4 +1,5 @@
 <?php
+// This script contains the solr server configurations
 
 namespace App\Http\Controllers\solr;
 
@@ -13,15 +14,18 @@ define('SOLR_SECURE', false);
 /* HTTP Port to connection */
 define('SOLR_SERVER_PORT', ((SOLR_SECURE) ? 8443 : 8983));
 
-/* HTTP Port to connection */
+/* Path to solr core */
+// $core='your core';
 $core='gov_orgs';
 define('SOLR_SERVER_PATH', '/solr/'.$core);
 
 /* Maximum number of rows fetched */
-define('RESPONSE_ROWS', 10);
+// configure this in config/solr.php
+// define('RESPONSE_ROWS', 10);
 
 /* HTTP Port to connection */
-define('SOLR_WRITER_TYPE', 'json');
+// configure this in config/solr.php
+// define('SOLR_WRITER_TYPE', 'json');
 
 /* HTTP Basic Authentication Username */
 define('SOLR_SERVER_USERNAME', 'admin');

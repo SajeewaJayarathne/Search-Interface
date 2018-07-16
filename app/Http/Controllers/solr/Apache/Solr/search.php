@@ -12,6 +12,7 @@ require('bootstrap.php');
 // php include path entry in the php.ini)
 
 require_once('Service.php');
+
 use Apache_Solr_Service;
 
 
@@ -23,22 +24,17 @@ class Solr_Server{
 
     public function __construct(){
         $this->solr = new Apache_Solr_Service(constant("SOLR_SERVER_HOSTNAME"), constant("SOLR_SERVER_PORT"), constant("SOLR_SERVER_PATH"));
-        $this->parameters = array
-                    (
-                        'df' => 'name',
-                        'facet' => 'true',
-                        'rows' => constant("RESPONSE_ROWS"),
-                        'facet.field' => 'category',
-                        'fl' => array('name','gi_website','services_-_services'),
-                        'omitHeader' => 'true',
-                        'wt' => constant("SOLR_WRITER_TYPE"),
-                    );
-
+        $this->parameters['df'] = config('solr.df');
+        $this->parameters['facet'] = config('solr.facet');
+        $this->parameters['rows'] = config('solr.rows');
+        $this->parameters['facet.field'] = config('solr.facet.field');
+        $this->parameters['fl'] = config('solr.fl');
+        $this->parameters['omitHeader'] = config('solr.omitHeader');
+        $this->parameters['wt'] = config('solr.wt');
     }
+
     
     function search($query){
-
-//             dd($solr);
 
             if ($query){
                 // if magic quotes is enabled then stripslashes will be needed
@@ -54,14 +50,15 @@ class Solr_Server{
                 try
                 {
                     $results = $this->solr->search($query, 0, 10, $this->parameters);
-//                     dd($results);
+
                     if ($results)
                     {
+                        // you can obtain more result parameters
                         $total = (int) $results->response->numFound;
                         $docs = $results->response->docs;
-//                         dd($docs);
                         $facets = $results->facet_counts->facet_fields;
                     }
+                    // For this instance only result documents are wanted
                     return $docs;
                     
                 }
