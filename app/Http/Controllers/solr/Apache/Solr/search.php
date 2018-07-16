@@ -25,14 +25,21 @@ class Solr_Server{
     private $parameters;
 
     public function __construct(){
+
         $this->solr = new Apache_Solr_Service(constant("SOLR_SERVER_HOSTNAME"), constant("SOLR_SERVER_PORT"), constant("SOLR_SERVER_PATH"));
+
+        // general query parameters
         $this->parameters['df'] = config('solr.df');
-        $this->parameters['group'] = config('solr.group');
-        $this->parameters['rows'] = config('solr.rows');
-        $this->parameters['group.field'] = config('solr.groupField');
         $this->parameters['fl'] = config('solr.fl');
         $this->parameters['omitHeader'] = config('solr.omitHeader');
-        $this->parameters['wt'] = config('solr.wt');
+        $this->parameters['wt'] = config('solr.wt');        
+        $this->parameters['rows'] = config('solr.rows');
+
+        // grouping parameters
+        $this->parameters['group'] = config('solr.group');
+        $this->parameters['group.field'] = config('solr.groupField');
+        $this->parameters['group.limit'] = config('solr.groupLimit');
+        
     }
 
     
@@ -56,21 +63,16 @@ class Solr_Server{
                     if ($response)
                     {
                         // dd($response);
-                        // $response = json_decode($response->__toString);
+                     
                         // you can obtain more result parameters by parsing the reponse 
-                        // $results = array(
-                        //     'total' => (int) $response->response->numFound,
-                        //     'docs' => $response->response->docs,
-                        //     'facets' => $response->facet_counts->facet_fields,
-                        // );
-                        // $total = (int) $results->response->numFound;
+                   
                         $matches = json_decode($response->getRawResponse())->grouped->category->matches;
                         $docs = json_decode($response->getRawResponse())->grouped->category->groups;
-                        // dd($docs);
-                        // $facets = $results->facet_counts->facet_fields;
+                        dd($docs[0]->doclist->docs[0]->name[0]);
+                        
                     }
                     // For this instance only result documents are wanted
-                    // return $results;
+    
                     return ['docs' => $docs, 'matches' => $matches];
                     
                 }

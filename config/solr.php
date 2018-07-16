@@ -7,4 +7,5 @@ return [
                          'wt' => 'json',
                          'group' => 'true',
                          'groupField' => 'category',
+                         'groupLimit' => '10',
 ];
