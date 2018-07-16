@@ -68,7 +68,7 @@ class Solr_Server{
                    
                         $matches = json_decode($response->getRawResponse())->grouped->category->matches;
                         $docs = json_decode($response->getRawResponse())->grouped->category->groups;
-                        dd($docs[0]->doclist->docs[0]->name[0]);
+                        // dd($docs[0]->doclist->docs[0]->name[0]);
                         
                     }
                     // For this instance only result documents are wanted
