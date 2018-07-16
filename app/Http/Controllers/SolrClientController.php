@@ -12,9 +12,9 @@ class SolrClientController extends Controller{
     public function get(Request $request){
         $solr = new Solr_Server;
         $results = $solr->search($request['q']);
-        dd($results);
+        // dd($results);
 //         return $results;
-        // return view('welcome', compact($results));
+        return view('welcome', compact('results'));
     }
 
 }
