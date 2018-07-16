@@ -1,8 +1,7 @@
 <body>
     <span style="color: gray">
-       {{-- <b>dick move dick!</b> --}}
        @foreach ($results as $result )
-           <b> $result->name </b>
+           <li> {{ $result->name }} </li>
        @endforeach
     </span>
 </body>
