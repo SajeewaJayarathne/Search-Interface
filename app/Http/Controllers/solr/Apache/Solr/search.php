@@ -64,13 +64,14 @@ class Solr_Server{
                         //     'facets' => $response->facet_counts->facet_fields,
                         // );
                         // $total = (int) $results->response->numFound;
+                        $matches = json_decode($response->getRawResponse())->grouped->category->matches;
                         $docs = json_decode($response->getRawResponse())->grouped->category->groups;
-                        dd($docs);
+                        // dd($docs);
                         // $facets = $results->facet_counts->facet_fields;
                     }
                     // For this instance only result documents are wanted
                     // return $results;
-                    return $docs;
+                    return ['docs' => $docs, 'matches' => $matches];
                     
                 }
                 catch (Exception $e)
