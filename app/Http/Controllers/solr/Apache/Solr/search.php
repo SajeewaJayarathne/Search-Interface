@@ -12,8 +12,10 @@ require('bootstrap.php');
 // php include path entry in the php.ini)
 
 require_once('Service.php');
+require_once('Response.php');
 
 use Apache_Solr_Service;
+use Apache_Solr_Response;
 
 
 class Solr_Server{
@@ -25,9 +27,9 @@ class Solr_Server{
     public function __construct(){
         $this->solr = new Apache_Solr_Service(constant("SOLR_SERVER_HOSTNAME"), constant("SOLR_SERVER_PORT"), constant("SOLR_SERVER_PATH"));
         $this->parameters['df'] = config('solr.df');
-        $this->parameters['facet'] = config('solr.facet');
+        $this->parameters['group'] = config('solr.group');
         $this->parameters['rows'] = config('solr.rows');
-        $this->parameters['facet.field'] = config('solr.facet.field');
+        $this->parameters['group.field'] = config('solr.groupField');
         $this->parameters['fl'] = config('solr.fl');
         $this->parameters['omitHeader'] = config('solr.omitHeader');
         $this->parameters['wt'] = config('solr.wt');
@@ -49,16 +51,25 @@ class Solr_Server{
 
                 try
                 {
-                    $results = $this->solr->search($query, 0, 10, $this->parameters);
+                    $response = $this->solr->search($query, 0, 10, $this->parameters);
 
-                    if ($results)
+                    if ($response)
                     {
-                        // you can obtain more result parameters
-                        $total = (int) $results->response->numFound;
-                        $docs = $results->response->docs;
-                        $facets = $results->facet_counts->facet_fields;
+                        // dd($response);
+                        // $response = json_decode($response->__toString);
+                        // you can obtain more result parameters by parsing the reponse 
+                        // $results = array(
+                        //     'total' => (int) $response->response->numFound,
+                        //     'docs' => $response->response->docs,
+                        //     'facets' => $response->facet_counts->facet_fields,
+                        // );
+                        // $total = (int) $results->response->numFound;
+                        $docs = json_decode($response->getRawResponse())->grouped->category->groups;
+                        dd($docs);
+                        // $facets = $results->facet_counts->facet_fields;
                     }
                     // For this instance only result documents are wanted
+                    // return $results;
                     return $docs;
                     
                 }
