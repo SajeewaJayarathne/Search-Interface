@@ -17,11 +17,11 @@
 
         {{-- include the results pages --}}
         <div class="results" style="padding: 1.5%">
-            @if (isset($results))
-                @include('includes/results')
-            @else
+            {{-- @if (isset($results)) --}}
+            @include('includes/results')
+            {{-- @else
                 @include('includes/empty')
-            @endif
+            @endif --}}
         </div>
     </div>
 @endsection
