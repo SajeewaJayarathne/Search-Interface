@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search?q={key}', 'SolrClientController@get');
+Route::get('/search', 'SolrClientController@get');
