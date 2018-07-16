@@ -14,14 +14,14 @@
 
         {{-- include the search menu bar from layouts --}}
         @include('includes/search-menu-bar') 
+        @include('includes/results')
 
         {{-- include the results pages --}}
-        <div class="results" style="padding: 1.5%">
-            {{-- @if (isset($results)) --}}
-            @include('includes/results')
-            {{-- @else
+        {{-- <div class="results" style="padding: 1.5%">
+            @if (isset($results))
+            @else
                 @include('includes/empty')
-            @endif --}}
-        </div>
+            @endif
+        </div> --}}
     </div>
 @endsection
